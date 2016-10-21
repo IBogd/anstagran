@@ -25,16 +25,16 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
-
+@WebServlet(name = "Register_Fail", urlPatterns = {"/Register_Fail"})
+public class Register_Fail extends HttpServlet {
     Cluster cluster=null;
-
-
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
+
+
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -47,58 +47,39 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         String username=request.getParameter("username");
+        username = username.toLowerCase();
         String password=request.getParameter("password");
+         String first_name=request.getParameter("first_name");
+        String last_name=request.getParameter("last_name");
+        String email=request.getParameter("email");
         
-        String email = request.getParameter("email");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
-        
-        username = username.toLowerCase(); // Regardless of user input, the username is set to lowercase
-        
-        // If the username is empty, print an error to the output windows
-        if(username.equals("")){
-            PrintWriter out = null;
-            out = new PrintWriter(response.getOutputStream());
-            out.println("Input Error : Invalid username length");
-            out.println("Enter a valid username");
-            out.close();
-            return;
-        }
-        
-        // If the password is empty, print an error to the output windows
-        if(password.equals("")){
-            PrintWriter out = null;
-            out = new PrintWriter(response.getOutputStream());
-            out.println("Input Error : Invalid password length");
-            out.println("Enter a valid password");
-            out.close();
-            return;
-        }
         User us=new User();
         us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
+        if(""!=username){
+            if (us.userExists(username)){
+                //error("user "+username+" exists", response);
+                RequestDispatcher rd=request.getRequestDispatcher("register_fail.jsp");
+                rd.forward(request,response);
+            }
+        }
+        if (""!=username && ""!=password && !us.userExists(username)){
+        us.RegisterUser(username, password,first_name,last_name,email);
         HttpSession session=request.getSession();
-        System.out.println("Session in servlet "+session);
-        if (isValid){
-            LoggedIn lg= new LoggedIn();
+        LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
-            
             session.setAttribute("LoggedIn", lg);
-            System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
             
-        }else{
-            //response.sendRedirect("/Instagrim/login");// ???????????
-            //System.out.println("Login failed");
-            RequestDispatcher rd=request.getRequestDispatcher("login_error.jsp");
-	    rd.forward(request,response);
-            
-        }
+        //RequestDispatcher rd=request.getRequestDispatcher("profile_home.jsp");
+	//rd.forward(request,response);
+            response.sendRedirect("profile_home.jsp");
+	//response.sendRedirect("register_success.jsp");
+            }else{
+            //error("All fields are required for the registration", response);
+         }
+        
+	//response.sendRedirect("/Instagrim");
         
     }
 
@@ -112,10 +93,8 @@ public class Login extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("register.jsp").forward(request, response);
     }
-
 }

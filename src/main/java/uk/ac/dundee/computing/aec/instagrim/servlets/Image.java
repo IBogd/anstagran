@@ -37,7 +37,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*"
-})
+})           //   "/Delete", "/Delete/", "/Delete/*"
 @MultipartConfig
 
 public class Image extends HttpServlet {
@@ -57,6 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
+        // CommandsMap.put("Delete", 4);
 
     }
 
@@ -69,6 +70,7 @@ public class Image extends HttpServlet {
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
      * response)
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         String args[] = Convertors.SplitRequestPath(request);
@@ -89,6 +91,12 @@ public class Image extends HttpServlet {
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
                 break;
+                
+//              case 4:
+//                //delete image zzz 
+//                deleteImage(args[2], response, request);
+//                break;
+                     
             default:
                 error("Bad Operator", response);
         }
@@ -124,13 +132,28 @@ public class Image extends HttpServlet {
         }
         out.close();
     }
-
+         
+//    private void deleteImage(String uuidstring, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+//    String user = "";
+//    PicModel pm = new PicModel();
+//    pm.setCluster(cluster);
+//    HttpSession session = request.getSession();
+//    LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+//    user=lg.getUsername();
+//     pm.deletePicture(java.util.UUID.fromString(uuidstring), user);
+//     response.sendRedirect("/Instagrim");
+//    //pm.getDate(java.util.UUID.fromString(uuidstring));
+//            
+//    }
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
 
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
+//            String isprivate = request.getParameter("isprivate");
+//            String info = request.getParameter("info"); te value chto bili dobavleni v DB cassandra 
             
             
             InputStream is = request.getPart(part.getName()).getInputStream();
@@ -147,11 +170,11 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);
+                tm.insertPic(b, type, filename, username);// isprivate, info);
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");// po4emu index.jsp?
              rd.forward(request, response);
         }
 

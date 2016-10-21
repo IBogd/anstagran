@@ -15,12 +15,11 @@
     <body>
         <header>
         <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
         </header>
         <nav>
             <ul>
                 
-                <!--<li><a href="/Instagrim/Images/majed">Sample Images</a></li> -->
+               <!-- <li><a href="/Instagrim/Images/majed">Sample Images</a></li> -->
             </ul>
         </nav>
        
@@ -30,9 +29,7 @@
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
-                    <li>First name <input type="password" name="first_name"></li>
-                    <li>Last name <input type="password" name="last_name"></li>
-                    <li>Email <input type="password" name="email"></li>
+                    <font color="red"><small>User already exists, yo</small></font>
                 </ul>
                 <br/>
                 <input type="submit" value="Register"> 

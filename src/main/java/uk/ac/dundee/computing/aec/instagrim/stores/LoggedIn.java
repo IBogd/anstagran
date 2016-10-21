@@ -6,15 +6,21 @@
 
 package uk.ac.dundee.computing.aec.instagrim.stores;
 
+//import java.io.IOException;
+//import javax.servlet.ServletException;
+//import javax.servlet.annotation.WebServlet;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+
 /**
  *
  * @author Administrator
  */
 public class LoggedIn {
-    boolean logedin=false;
-    String Username=null;
+    
+    private boolean logedin=false; // create login private
+    private String Username=null;
     public void LogedIn(){
-        
     }
     
     public void setUsername(String name){

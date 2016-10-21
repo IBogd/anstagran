@@ -1,7 +1,7 @@
 <%-- 
     Document   : UsersPics
     Created on : Sep 24, 2014, 2:52:48 PM
-    Author     : Administrator
+    Author     : Modified by Igors Bogdanovs
 --%>
 
 <%@page import="java.util.*"%>
@@ -18,13 +18,14 @@
         <header>
         
         <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+        <h2>Your world in Black place where you store images</h2>
         </header>
         
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li><a href="/Instagrim/Logout">Logout</a></li>
             </ul>
         </nav>
  

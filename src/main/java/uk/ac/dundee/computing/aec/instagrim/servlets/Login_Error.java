@@ -25,8 +25,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
  *
  * @author Administrator
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "Login_Error", urlPatterns = {"/Login_Error"})
+public class Login_Error extends HttpServlet {
 
     Cluster cluster=null;
 
@@ -51,11 +51,8 @@ public class Login extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
-        String email = request.getParameter("email");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
         
-        username = username.toLowerCase(); // Regardless of user input, the username is set to lowercase
+        //username = username.toLowerCase(); // Regardless of user input, the username is set to lowercase
         
         // If the username is empty, print an error to the output windows
         if(username.equals("")){

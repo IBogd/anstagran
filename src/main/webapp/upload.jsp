@@ -14,11 +14,13 @@
     </head>
     <body>
         <h1>InstaGrim ! </h1>
-        <h2>Your world in Black and White</h2>
+        <h2>Your world in White place where you uploaded </h2>
         <nav>
             <ul>
-                <li class="nav"><a href="upload.jsp">Upload</a></li>
+                <%-- <li class="nav"><a href="upload.jsp">Upload</a></li --%>
+                <li class="nav"><a href="Upload">Upload</a></li
                 <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
+                <li><a href="Logout">Logout</a></li>
             </ul>
         </nav>
  

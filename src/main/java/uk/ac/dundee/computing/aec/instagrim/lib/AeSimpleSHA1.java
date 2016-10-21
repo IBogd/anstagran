@@ -1,5 +1,4 @@
 package uk.ac.dundee.computing.aec.instagrim.lib;
-
 import java.io.UnsupportedEncodingException; 
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException; 

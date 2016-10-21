@@ -23,7 +23,7 @@ public final class CassandraHosts {
 
     private static Cluster cluster;
     static String Host = "127.0.0.1";  //at least one starting point to talk to
-    //static String Host = "localhost";
+   
     public CassandraHosts() {
 
     }
