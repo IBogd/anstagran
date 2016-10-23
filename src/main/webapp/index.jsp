@@ -27,8 +27,9 @@
             <ul>
                    
                 <li class="footer"><a href="/Instagrim">Home</a></li>
+              <%--    <li class="footer"><a href="/Instagrim/AllPics">All pictures</a></li>
                
-             <%--  <li><a href="/Instagrim/Upload">Upload a picture</a></li>  --%>
+             <li><a href="/Instagrim/Upload">Upload a picture</a></li>  --%>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -37,6 +38,7 @@
                             if (lg.getlogedin()) {
                     %>
 
+                
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images send to page /Instagrim/Images</a></li>
                 <li><a href="Logout">Logout</a></li>
                     <%}

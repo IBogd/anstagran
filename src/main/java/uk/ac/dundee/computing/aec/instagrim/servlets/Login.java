@@ -5,7 +5,7 @@
  */
 
 package uk.ac.dundee.computing.aec.instagrim.servlets;
-
+//import java.io.PrintWriter;
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,6 +31,7 @@ public class Login extends HttpServlet {
     Cluster cluster=null;
 
 
+    @Override
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -89,7 +90,7 @@ public class Login extends HttpServlet {
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
 	    rd.forward(request,response);
             
         }else{

@@ -8,7 +8,7 @@ package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,6 +28,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 @WebServlet(name = "Register_Fail", urlPatterns = {"/Register_Fail"})
 public class Register_Fail extends HttpServlet {
     Cluster cluster=null;
+    @Override
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -50,20 +51,20 @@ public class Register_Fail extends HttpServlet {
         String username=request.getParameter("username");
         username = username.toLowerCase();
         String password=request.getParameter("password");
-         String first_name=request.getParameter("first_name");
+        String first_name=request.getParameter("first_name");
         String last_name=request.getParameter("last_name");
         String email=request.getParameter("email");
         
         User us=new User();
         us.setCluster(cluster);
-        if(""!=username){
+        if(!"".equals(username)){
             if (us.userExists(username)){
-                //error("user "+username+" exists", response);
+                
                 RequestDispatcher rd=request.getRequestDispatcher("register_fail.jsp");
                 rd.forward(request,response);
             }
         }
-        if (""!=username && ""!=password && !us.userExists(username)){
+        if (!"".equals(username) && !"".equals(password) && !us.userExists(username)){
         us.RegisterUser(username, password,first_name,last_name,email);
         HttpSession session=request.getSession();
         LoggedIn lg= new LoggedIn();
@@ -71,15 +72,13 @@ public class Register_Fail extends HttpServlet {
             lg.setUsername(username);
             session.setAttribute("LoggedIn", lg);
             
-        //RequestDispatcher rd=request.getRequestDispatcher("profile_home.jsp");
-	//rd.forward(request,response);
+        
             response.sendRedirect("profile_home.jsp");
-	//response.sendRedirect("register_success.jsp");
-            }else{
-            //error("All fields are required for the registration", response);
+	
+            
          }
         
-	//response.sendRedirect("/Instagrim");
+	
         
     }
 

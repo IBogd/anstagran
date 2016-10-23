@@ -24,6 +24,8 @@ import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
 public class Profile extends HttpServlet {
 
     Cluster cluster=null;
+    
+    @Override
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();

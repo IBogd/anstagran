@@ -11,7 +11,7 @@
         <h1></h1>
     </header>
     <body>
-        <h3>See you soon !!! Click <a href="/Instagrim/login">here</a> to return on main page </h3>         
+        <h3>See you soon !!! Click <a href="/Instagrim">here</a> to return on main page </h3>         
     </body>
     
 

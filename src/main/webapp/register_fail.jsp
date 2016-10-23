@@ -29,7 +29,7 @@
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
-                    <font color="red"><small>User already exists, yo</small></font>
+                    <font color="red"><small>The name you used belongs to a registered user  </small></font>
                 </ul>
                 <br/>
                 <input type="submit" value="Register"> 

@@ -28,6 +28,8 @@ import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 @WebServlet(name = "Register", urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
     Cluster cluster=null;
+    
+    @Override
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
@@ -58,14 +60,14 @@ public class Register extends HttpServlet {
         
         User us=new User();
         us.setCluster(cluster);
-        if(""!=username){
+        if(!"".equals(username)){
             if (us.userExists(username)){
                 //response.sendRedirect("register_fail.jsp");
                 RequestDispatcher rd=request.getRequestDispatcher("register_fail.jsp");
                 rd.forward(request,response);
             }
         }
-        if (""!=username && ""!=password && !us.userExists(username)){
+        if (!"".equals(username) && !"".equals(password) && !us.userExists(username)){
             us.RegisterUser(username, password,first_name,last_name,email);
             HttpSession session=request.getSession();
             //response.sendRedirect("register_success.jsp");
