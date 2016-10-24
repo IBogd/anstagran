@@ -19,6 +19,18 @@
         <header>
             <%
                 LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                   String name = lg.getUsername();
+                   int len=name.length();
+                   char nameend = name.charAt(len-1);
+                   // If name ends in s, add ' to end -such as Igors will be Igors'
+                   // If name ends in anything else, add an 's -such as Robert will be Robert's
+                   if(nameend == 's' || nameend == 'S'){
+                       name += "'";
+                   }
+                   else
+                   {
+                       name += "'s";
+                   }
 
             // method if user loggin 
                 // get user name
@@ -28,17 +40,15 @@
 
         </header>
 
-        <nav>
-            <ul>
-                <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
-                <li><a href="/Instagrim/Logout">Logout</a></li>
-            </ul>
-        </nav>
+        <ul>
+            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+            <li><a href="/Instagrim/Images/majed">Samples</a></li>
+            <li><a href="/Instagrim/Logout">Logout</a></li>
+        </ul>
 
 
 
-        <h1>Your Pics</h1>
+        <h1><%=name%> photos</h1>
         <%                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");// store list of all images
             if (lsPics == null) {
         %>
@@ -60,8 +70,6 @@
             <li>
                 <a class="rig-cell" href="/Instagrim/Image/<%=p.getSUUID()%>" >
                     <img class= "rig-img" src="/Instagrim/Thumb/<%=p.getSUUID()%>" alt = "">
-                    <span class="rig-overlay"></span>
-                    <span class="rig-text"> Hello world</span>
                 </a>
 
             </li>

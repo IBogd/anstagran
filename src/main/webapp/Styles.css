@@ -1,5 +1,37 @@
 /* CSS taken from http://www.menucool.com/ui/responsive-image-grid-with-hover-effect */
 
+html {
+    font-family: "Times New Roman", Times, serif;
+}
+
+html{
+    background-color: #FFF8DC;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #CDBA96;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+   
+}
 
 #rig {
     max-width:900px;
@@ -7,7 +39,7 @@
     padding:0;
     font-size:0; /* Remember to change it back to normal font size if have captions */
     list-style:none;
-    background-color:rgba(0, 0, 0, 0.3);
+    background-color:rgba(252,230	,201, 0.7);
 }
 #rig li {
     display: inline-block;
@@ -21,8 +53,8 @@
         
 /* The wrapper for each item */
 .rig-cell {
-    /*margin:12px;
-    box-shadow:0 0 6px rgba(0,0,0,0.3);*/
+    margin:12px;
+
     display:block;
     position: relative;
     overflow:hidden;
@@ -30,16 +62,26 @@
         
 /* If have the image layer */
 .rig-img {
+    /*
+    object-fit: cover;
     display:block;
     width: 100%;
     height: auto;
     border:none;
     transform:scale(1);
     transition:all 1s;
+    */
+    width:200px;
+    height:200px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    transition: all 1s;
+    border: none;
+    display: block;
 }
 
 #rig li:hover .rig-img {
-    transform:scale(1.05);
+    transform:scale(1.7);
 }
         
 /* If have the overlay layer */
@@ -68,7 +110,7 @@
     box-sizing:border-box;
     position:absolute;
     left:0;
-    width:100%;
+    width:170px;
     text-align:center;
     text-transform:capitalize;
     font-size:18px;
