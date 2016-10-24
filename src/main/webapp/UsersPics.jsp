@@ -17,19 +17,17 @@
     </head>
     <body>
         <header>
-            <% 
-            LoggedIn lg = (LoggedIn)session.getAttribute("LoggedIn");
-            
+            <%
+                LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+
             // method if user loggin 
-            // get user name
-            //need to coonect to DB and add class of PicModel    
-            
-            
-            
+                // get user name
+                //need to coonect to DB and add class of PicModel    
+
             %>
-            
+
         </header>
-        
+
         <nav>
             <ul>
                 <li class="nav"><a href="/Instagrim/upload.jsp">Upload</a></li>
@@ -37,28 +35,42 @@
                 <li><a href="/Instagrim/Logout">Logout</a></li>
             </ul>
         </nav>
- 
-        <article>
-            <h1>Your Pics</h1>
-        <%
-            java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
+
+
+
+        <h1>Your Pics</h1>
+        <%                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");// store list of all images
             if (lsPics == null) {
         %>
         <p>No Pictures found</p>
+        
         <%
         } else {
+
             Iterator<Pic> iterator;
             iterator = lsPics.iterator();
+            %>
+            <ul id="rig">
+            <%
             while (iterator.hasNext()) {
                 Pic p = (Pic) iterator.next();
 
         %>
-        <a href="/Instagrim/Image/<%=p.getSUUID()%>" ><img src="/Instagrim/Thumb/<%=p.getSUUID()%>"></a><br/><%
+        
+            <li>
+                <a class="rig-cell" href="/Instagrim/Image/<%=p.getSUUID()%>" >
+                    <img class= "rig-img" src="/Instagrim/Thumb/<%=p.getSUUID()%>" alt = "">
+                    <span class="rig-overlay"></span>
+                    <span class="rig-text"> Hello world</span>
+                </a>
 
-            }
-            }
-        %>
-        </article>
+            </li>
+                <%}%> 
+            
+        </ul>
+        <%}%>          
+
+
         <footer>
             <ul>
                 <li class="footer"><a href="/Instagrim">Home</a></li>
