@@ -29,14 +29,14 @@ import java.io.IOException;
 //import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Date;
-//import java.util.LinkedList;
+import java.util.LinkedList;
 import javax.imageio.ImageIO;
 import static org.imgscalr.Scalr.*;
 import org.imgscalr.Scalr.Method;
 
 import uk.ac.dundee.computing.aec.instagrim.lib.*;
 import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
-//import uk.ac.dundee.computing.aec.stores.TweetStore;
+
 
 public class PicModel {
 
@@ -121,14 +121,14 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.SPEED, 250, OP_ANTIALIAS);//, OP_GRAYSCALE);
+        img = resize(img, Method.AUTOMATIC, 250, OP_ANTIALIAS);//, OP_GRAYSCALE);
         // Let's add a little border before we return result.
         return pad(img, 2);
     }
     
    public static BufferedImage createProcessed(BufferedImage img) {
         int Width=img.getWidth()-1;
-        img = resize(img, Method.SPEED, Width, OP_ANTIALIAS);//, OP_GRAYSCALE);
+        img = resize(img, Method.AUTOMATIC, Width, OP_ANTIALIAS);//, OP_GRAYSCALE);
         return pad(img, 4);
     }
    

@@ -1,7 +1,7 @@
 <%-- 
     Document   : UsersPics
-    Created on : Sep 24, 2014, 2:52:48 PM
-    Author     : Modified by Igors Bogdanovs
+    Created on : Oct 22, 2016, 2:52:48 PM
+    Author     :  Igors Bogdanovs
 --%>
 
 <%@page import="java.util.*"%>
@@ -17,31 +17,23 @@
     <body>
         <header>
         
-        <h1>InstaGrim ! </h1>
-        <h2>All images uploaded by users</h2>
+        <h1>All images uploaded by users ! </h1>
+        
         </header>
         
         <nav>
             <ul>
                 <li class="footer"><a href="/Instagrim">Go back to main page</a></li>
+                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
             </ul>
         </nav>
  
         <article>
-            <h1>User Pics</h1>
-            
+                  
         <%
-            //add functionality for getting all the pictures from database 
-            //SELECT * FROM `instagrim.pictures`;
-            
-            //output query result here
-            
-            
             java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");
-            System.out.println(lsPics);
+           // System.out.println(lsPics);
             if (lsPics == null) {
-                
-           //or no pictures found     
         %>
         
       

@@ -62,7 +62,7 @@ public class Register extends HttpServlet {
         us.setCluster(cluster);
         if(!"".equals(username)){
             if (us.userExists(username)){
-                //response.sendRedirect("register_fail.jsp");
+                
                 RequestDispatcher rd=request.getRequestDispatcher("register_fail.jsp");
                 rd.forward(request,response);
             }
@@ -70,23 +70,14 @@ public class Register extends HttpServlet {
         if (!"".equals(username) && !"".equals(password) && !us.userExists(username)){
             us.RegisterUser(username, password,first_name,last_name,email);
             HttpSession session=request.getSession();
-            //response.sendRedirect("register_success.jsp");
+            
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
             session.setAttribute("LoggedIn", lg);
  
-            
-            //Profile p = new Profile();
-            //p.init();
-            //RequestDispatcher rd=request.getRequestDispatcher("profile.jsp");
-	   // rd.forward(request,response);
             response.sendRedirect("/Instagrim/Profile");
-            }else{
-            //error("All fields are required for the registration", response);
-         }
-        
-	//response.sendRedirect("/Instagrim");
+            }
 
     }
 

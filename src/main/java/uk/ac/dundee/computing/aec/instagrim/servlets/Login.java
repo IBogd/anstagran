@@ -52,9 +52,9 @@ public class Login extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
-        String email = request.getParameter("email");
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
+//        String email = request.getParameter("email");
+//        String firstname = request.getParameter("firstname");
+//        String lastname = request.getParameter("lastname");
         
         username = username.toLowerCase(); // Regardless of user input, the username is set to lowercase
         

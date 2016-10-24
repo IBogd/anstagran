@@ -7,18 +7,27 @@
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.models.*" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagrim</title>
+        <title>Instagram</title>
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
         <header>
-        
-        <h1>InstaGrim ! </h1>
-        <h2>Your world in Black place where you store images</h2>
+            <% 
+            LoggedIn lg = (LoggedIn)session.getAttribute("LoggedIn");
+            
+            // method if user loggin 
+            // get user name
+            //need to coonect to DB and add class of PicModel    
+            
+            
+            
+            %>
+            
         </header>
         
         <nav>

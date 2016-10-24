@@ -20,6 +20,10 @@ public class LoggedIn {
     
     private boolean logedin=false; // create login private
     private String Username=null;
+    private final String first_name=null;
+    
+    
+    
     public void LogedIn(){
     }
     

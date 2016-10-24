@@ -69,7 +69,7 @@ public final class Keyspaces {
                 SimpleStatement cqlQuery = new SimpleStatement(CreatePicTable);
                 session.execute(cqlQuery);
             } catch (Exception et) {
-                System.out.println("Can't create tweet table " + et);
+                System.out.println("Can't create tweet table " + et);// I don't have this table 
             }
             System.out.println("" + Createuserpiclist);
 

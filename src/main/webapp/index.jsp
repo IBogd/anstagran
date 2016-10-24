@@ -7,6 +7,9 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@ page import="uk.ac.dundee.computing.aec.instagrim.models.*" %>
+<%@ page import = "uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts" %>
+<%@ page import = "com.datastax.driver.core.Cluster" %>
 <!DOCTYPE html>
 
 
@@ -19,9 +22,8 @@
     </head>
     <body>
         <header>
-            <h1>InstaGrim ! </h1>
+            <h1>Instgram ! </h1>
             <h2>Welcome to our new website which make me crazy</h2>
-            <h2>index jsp page </h2>
         </header>
         <nav>
             <ul>
