@@ -17,26 +17,38 @@
         <title>Profile home</title>
     </head>
     <body>
-        <h1>Hello User!</h1>
-        
+        <%
+            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+            String name = lg.getUsername();
+
+        %>
+        <profile_header>
+            <h1>Hello there <%=name%> :)</h1>
+        </profile_header>
+
         <nav>
             <ul>
-                 <%
-                        
-                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
-                        if (lg != null) {
-                            String UserName = lg.getUsername();
-                            if (lg.getlogedin()) {
-                    %>
-               
-                <li><a href="Upload">Upload a picture</a></li> <!--ссылка на страницу upload.jsp -->
-                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images send to page /Instagrim/Images</a></li>
+                <%
+                    if (lg != null) {
+                        if (lg.getlogedin()) {
+                %>
+                
+                <form method="POST"  action="Register">
+                        <ul>
+                            <li>About me <input type="text" name="street"></li>
+                        </ul>
+                    <input type="submit" value="Register"> 
+                </form>
+                
+                <li><a href="Upload">Upload a picture</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
                 <li><a href="Logout">Logout</a></li>
-                    
-                                // here is where boxes for filling in details will be
-                                // then a confirmation box
-                            <%}    
-                    }%>
+                
+
+                <%
+                %>
+                <%}
+                }%>
             </ul>
         </nav>
     </body>

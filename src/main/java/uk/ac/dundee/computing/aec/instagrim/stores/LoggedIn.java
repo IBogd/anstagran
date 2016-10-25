@@ -20,9 +20,9 @@ public class LoggedIn {
     
     private boolean logedin=false; // create login private
     private String Username=null;
-    private final String first_name=null;
     
-    
+    // new
+    private String Address = null;
     
     public void LogedIn(){
     }
@@ -45,5 +45,13 @@ public class LoggedIn {
     }
     public boolean getlogedin(){
         return logedin;
+    }
+    // New
+    public void setAddress(String address){
+        Address = address;
+    }
+    
+    public String getAddress(){
+        return Address;
     }
 }

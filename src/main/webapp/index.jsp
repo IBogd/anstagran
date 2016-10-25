@@ -15,15 +15,15 @@
 
 <html>
     <head>
-        <title>Instagram</title>
+        <title>Website name</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     </head>
     <body>
         <header>
-            <h1>Instgram ! </h1>
-            <h2>Welcome to our new website which make me crazy</h2>
+            <h1>Website name ! </h1>
+            <h2>Welcome, etc, etc</h2>
         </header>
         <nav>
             <ul>

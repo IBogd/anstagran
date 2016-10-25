@@ -33,6 +33,7 @@
                     <li>First name <input type="password" name="first_name"></li>
                     <li>Last name <input type="password" name="last_name"></li>
                     <li>Email <input type="password" name="email"></li>
+                    
                 </ul>
                 <br/>
                 <input type="submit" value="Register"> 

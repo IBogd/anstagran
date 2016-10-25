@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagram</title>
+        <title>Website name</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
 
     </head>
