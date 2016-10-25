@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="Styles.css" />
     </head>
     <body>
-        <h1>InstaGrim ! </h1>
+        <h1>upload.jsp  </h1>
         <h2>Your world in White place where you uploaded </h2>
         <nav>
             <ul>

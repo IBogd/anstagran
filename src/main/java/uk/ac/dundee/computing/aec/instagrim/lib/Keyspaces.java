@@ -33,6 +33,7 @@ public final class Keyspaces {
             String Createuserpiclist = "CREATE TABLE if not exists instagrim.userpiclist (\n"
                     + "picid uuid,\n"
                     + "user varchar,\n"
+                    + "name varchar,\n"
                     + "pic_added timestamp,\n"
                     + "PRIMARY KEY (user,pic_added)\n"
                     + ") WITH CLUSTERING ORDER BY (pic_added desc);";
@@ -46,9 +47,11 @@ public final class Keyspaces {
                      + "     password text,\n"
                     + "      first_name text,\n"
                     + "      last_name text,\n"
-                    + "      email set<text>,\n"
-                    + "      addresses  map<text, frozen <address>>\n"
+                    + "      email text,\n"
+                    + "      addresses text,\n"
+                    + "      aboutuser text\n"
                     + "  );";
+            
             Session session = c.connect();
             try {
                 PreparedStatement statement = session

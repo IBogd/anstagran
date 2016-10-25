@@ -14,7 +14,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Profile home</title>
+        <title>Instagrim</title>
+    <h1>profile.jsp</h1>
     </head>
     <body>
         <%
@@ -33,12 +34,12 @@
                         if (lg.getlogedin()) {
                 %>
                 
-                <form method="POST"  action="Register">
+               <%-- <form method="POST"  action="Register"> --%>
                         <ul>
                             <li>About me <input type="text" name="street"></li>
                         </ul>
-                    <input type="submit" value="Register"> 
-                </form>
+                  <%--  <input type="submit" value="Register"> 
+                </form>  --%>
                 
                 <li><a href="Upload">Upload a picture</a></li>
                 <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>

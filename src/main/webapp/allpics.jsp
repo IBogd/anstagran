@@ -18,7 +18,7 @@
         <header>
         
         <h1>All images uploaded by users ! </h1>
-        
+        <h1>AllPics.jsp</h1>
         </header>
         
         <nav>

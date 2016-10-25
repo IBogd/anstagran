@@ -37,7 +37,7 @@ import uk.ac.dundee.computing.aec.instagrim.stores.Pic;
     "/Thumb/*",
     "/Images",
     "/Images/*"
-})           //   "/Delete", "/Delete/", "/Delete/*" as idea
+})           //   delete as idea  must be there
 @MultipartConfig
 
 public class Image extends HttpServlet {
@@ -57,7 +57,7 @@ public class Image extends HttpServlet {
         CommandsMap.put("Image", 1);
         CommandsMap.put("Images", 2);
         CommandsMap.put("Thumb", 3);
-       
+       // delete
        
 
     }
@@ -97,12 +97,16 @@ public class Image extends HttpServlet {
             case 3:
                 DisplayImage(Convertors.DISPLAY_THUMB,args[2],  response);
                 break;
+                // delete
                      
             default:
                 error("Bad Operator", response);
         }
     }
-
+    
+    // delete image method 
+    
+    
     private void DisplayImageList(String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -112,7 +116,18 @@ public class Image extends HttpServlet {
         rd.forward(request, response);
 
     }
-
+    
+    
+    private void DisplayAllImg (String User, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         PicModel tm = new PicModel();
+         tm.setCluster(cluster);
+         java.util.LinkedList<Pic> lsPics = tm.getPics("*");
+         RequestDispatcher rd = request.getRequestDispatcher("/allpics.jsp");
+         request.setAttribute("allPics", lsPics);
+         rd.forward(request, response);
+    }
+    
+    
     private void DisplayImage(int type,String Image, HttpServletResponse response) throws ServletException, IOException {
         PicModel tm = new PicModel();
         tm.setCluster(cluster);
@@ -138,7 +153,7 @@ public class Image extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
-
+            String imgabout = request.getParameter("imgabout");
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
             
@@ -157,11 +172,11 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username);// sjuda dobavlaetsa infa
+                tm.insertPic(b, type, filename, username, imgabout);
 
                 is.close();
             }
-            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");// po4emu index.jsp?
+            RequestDispatcher rd = request.getRequestDispatcher("/upload.jsp");
              rd.forward(request, response);
         }
 

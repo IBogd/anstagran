@@ -23,10 +23,10 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-//import java.io.FileInputStream;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-//import java.io.InputStream;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.LinkedList;
@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user) {
+    public void insertPic(byte[] b, String type, String name, String user, String imgabout) {
         try {
             Convertors convertor = new Convertors();
 
@@ -73,13 +73,13 @@ public class PicModel {
             Session session = cluster.connect("instagrim");
 
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
-            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user, pic_added) values(?,?,?)"); /// sjuda nado dobavitj novie value dla db kotorie v Keyspaces
+            PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user,name, pic_added) values(?,?,?,?)"); //added new value name
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
             BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
 
             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
-            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded));// sjuda dobavlajutsa COLUMS iz Keyspaces chto vi6e
+            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, imgabout));// sjuda dobavlajutsa COLUMS iz Keyspaces chto vi6e
             session.close();
 
         } catch (IOException ex) {
@@ -104,7 +104,7 @@ public class PicModel {
         return null;
     }
     
-    public byte[] picdecolour(String picid,String type) {/// !!!!!
+    public byte[] picdecolour(String picid,String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));
             BufferedImage processed = createProcessed(BI);
@@ -121,7 +121,7 @@ public class PicModel {
     }
 
     public static BufferedImage createThumbnail(BufferedImage img) {
-        img = resize(img, Method.AUTOMATIC, 250, OP_ANTIALIAS);//, OP_GRAYSCALE);
+        img = resize(img, Method.AUTOMATIC, 250, OP_ANTIALIAS);//, OP_GRAYSCALE); when I remove this parameter images no more gray
         // Let's add a little border before we return result.
         return pad(img, 2);
     }
@@ -135,7 +135,7 @@ public class PicModel {
     public java.util.LinkedList<Pic> getPicsForUser(String User) {
         java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
         Session session = cluster.connect("instagrim");
-        PreparedStatement ps = session.prepare("select picid from userpiclist where user =?");// sdesj dal6e dobavale6 teze dannie dla DB,4to dobavleni v primere
+        PreparedStatement ps = session.prepare("select picid from userpiclist where user =?");
         ResultSet rs = null;
         BoundStatement boundStatement = new BoundStatement(ps);
         rs = session.execute( // this is where the query is executed
@@ -157,7 +157,33 @@ public class PicModel {
         return Pics;
     }
 
+    public java.util.LinkedList<Pic> getPics(String User){// idea of get all images for a particular user
+        java.util.LinkedList<Pic> Pics = new java.util.LinkedList<>();
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select * from pics");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute(boundStatement.bind());
+         if (rs.isExhausted()) {
+            System.out.println("No Images returned");
+            return null;
+        } else {
+            for (Row row : rs) {
+                Pic pic = new Pic();
+                java.util.UUID UUID = row.getUUID("picid");
+                System.out.println("UUID" + UUID.toString());
+                pic.setUUID(UUID);
+                Pics.add(pic);
+            }
+         }
+         return Pics;
+    }
+    
+    
+    // delete statement there after 
+    
     public Pic getPic(int image_type, java.util.UUID picid) {
+        
         Session session = cluster.connect("instagrim");
         ByteBuffer bImage = null;
         String type = null;

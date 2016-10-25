@@ -13,13 +13,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Instagram</title>
+        <title>Instagrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
 
     </head>
     <body>
         <header>
-        <h1>InstaGrim! </h1>
+        <h1>login_error.jsp </h1>
         </header>
         
         <article>

@@ -14,7 +14,7 @@
     </head>
     <body>
         <header>
-        <h1>InstaGrim ! </h1>
+        <h1>register_fail.jsp ! </h1>
         </header>
         <nav>
             <ul>

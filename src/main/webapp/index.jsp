@@ -15,15 +15,15 @@
 
 <html>
     <head>
-        <title>Website name</title>
+        <title>Instagrim</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     </head>
     <body>
         <header>
-            <h1>Website name ! </h1>
-            <h2>Welcome, etc, etc</h2>
+            <h1>index.jsp </h1>
+           
         </header>
         <nav>
             <ul>

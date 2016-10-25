@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <header role="banner">
-        <h1></h1>
+        <h1>logout.jsp</h1>
     </header>
     <body>
         <h3>See you soon !!! Click <a href="/Instagrim">here</a> to return on main page </h3>         
