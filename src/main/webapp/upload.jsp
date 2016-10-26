@@ -26,6 +26,8 @@
  
         <article>
             <h3>File Upload</h3>
+            <label for="status">yes or no</label>
+            <input id="status" name="status">
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 

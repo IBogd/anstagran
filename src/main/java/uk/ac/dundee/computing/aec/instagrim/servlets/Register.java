@@ -8,6 +8,7 @@ package uk.ac.dundee.computing.aec.instagrim.servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
+import uk.ac.dundee.computing.aec.instagrim.models.PicModel;
 import uk.ac.dundee.computing.aec.instagrim.models.User;
 import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
 
@@ -58,6 +61,7 @@ public class Register extends HttpServlet {
         String email=request.getParameter("email");
         String about=request.getParameter("about");
         
+        
         User us=new User();
         us.setCluster(cluster);
         if(!"".equals(username)){
@@ -67,6 +71,7 @@ public class Register extends HttpServlet {
                 rd.forward(request,response);
             }
         }
+        
         //------------------SET USER VARIABLES-----------------\\
         if (!"".equals(username) && 
                 !"".equals(password) && 

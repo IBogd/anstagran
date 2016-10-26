@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String imgabout) { // add bolean there
+    public void insertPic(byte[] b, String type, String name, String user, String imgabout, boolean profilePic) { // add bolean there
         try {
             Convertors convertor = new Convertors();
 
@@ -73,16 +73,20 @@ public class PicModel {
             Session session = cluster.connect("instagrim");
            
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
-        // if profile picture is true, else if not profile pic 
-               //Prepared statement for userprofile  only for profile pictures 
-            // userpiclist only if its not profile
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user,name, pic_added) values(?,?,?,?)"); //added new value name
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
+            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+
              Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
            
-            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
             session.execute(bsInsertPicToUser.bind(picid, user, imgabout, DateAdded));// sjuda dobavlajutsa COLUMS iz Keyspaces chto vi6e
+             
+            if (profilePic == true) {
+                PreparedStatement psInsertProfilePic = session.prepare("update userprofiles set picprofile = ? where login = ?");
+                BoundStatement bsInsertProfilePic = new BoundStatement(psInsertProfilePic);
+                session.execute(bsInsertProfilePic.bind(picid, user));
+            }
              
             session.close();
 
@@ -90,7 +94,7 @@ public class PicModel {
             System.out.println("Error --> " + ex);
         }
     }
-
+    
     public byte[] picresize(String picid,String type) {
         try {
             BufferedImage BI = ImageIO.read(new File("/var/tmp/instagrim/" + picid));

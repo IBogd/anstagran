@@ -36,12 +36,7 @@
         <p> Last name:$(last name)</p>
             , email, aboutuser </p> --%>
         
-        <form method="POST" enctype="multipart/form-data" action="Image">
-                File to upload: <input type="file" name="profile_pic"><br/>
-
-                <br/>
-                <input type="submit" value="Press"> to upload the file!
-            </form>   
+ 
         
         
         <nav>
@@ -52,9 +47,7 @@
                 %>
                 
                <%-- <form method="POST"  action="Register"> --%>
-                        <ul>
-                            <li>About me <input type="text" name="street"></li>
-                        </ul>
+    
                   <%--  <input type="submit" value="Register"> 
                 </form>  --%>
                 

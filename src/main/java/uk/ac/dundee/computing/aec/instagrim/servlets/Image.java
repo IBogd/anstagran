@@ -173,7 +173,21 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, imgabout);// add this arguments of the bolean 
+                String cbState = request.getParameter( "check" );
+                
+                String status=request.getParameter("status");
+
+                boolean active = false;
+                if("no".equals(status))
+                    active = false;
+                if("yes".equals(status))
+                    active = true;
+                if(active)
+                    tm.insertPic(b, type, filename, username, imgabout, true);// add this arguments of the bolean 
+                else
+                    tm.insertPic(b, type, filename, username, imgabout, false);// add this arguments of the bolean 
+                    
+
 
                 is.close();
             }
