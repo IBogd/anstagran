@@ -1,34 +1,26 @@
 /* CSS taken from http://www.menucool.com/ui/responsive-image-grid-with-hover-effect 
 and changed by me*/
 
-profile_header {
-    width: 100px;
-    height: 100px;
-    background-color: red;
 
-    position: absolute;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    margin: auto;
-}
-
-html {
-    font-family: "Times New Roman", Times, serif;
-}
 
 html{
     background-color: #FFF8DC;
-}
+    height:100%;
+}   
 
+body
+{
+    position: relative;
+    margin: 0;
+    min-height:100%;
+}
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #CDBA96;
+    width:100%;
 }
 
 li {
@@ -45,7 +37,7 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-   
+   background-color: #F0E68C;
 }
 
 #rig {
@@ -54,7 +46,7 @@ li a:hover {
     padding:0;
     font-size:0; /* Remember to change it back to normal font size if have captions */
     list-style:none;
-    background-color:rgba(252,230	,201, 0.7);
+    background-color:rgba(252,230,201, 0.7);
 }
 #rig li {
     display: inline-block;
@@ -139,6 +131,9 @@ li a:hover {
     transform:translateY(-20px);
     transition:all .3s;
 }
+
+
+
 #rig li:hover .rig-text {
     transform:translateY(0px);
     opacity:0.9;

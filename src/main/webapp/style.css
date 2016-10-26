@@ -1,0 +1,62 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26-Oct-2016, 21:42:44
+    Author     : Igors Bogdanovs <i.bogdanovs@dundee.ac.uk>
+*/
+
+html{
+    background-color: #FFF8DC;
+}   
+
+
+body
+{
+    position: relative;
+    margin: 0;
+    min-height:100%;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #CDBA96;
+    width:100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+   background-color: #F0E68C;
+}
+
+.form {
+    clear:both;
+    text-align: right;
+    line-height: 30px;
+    float:left;
+    
+}
+footer {
+
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:40px;   /* Height of the footer */
+   background-color: #CDBA96;
+   color: white;
+}

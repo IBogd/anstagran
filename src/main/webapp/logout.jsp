@@ -7,8 +7,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <head>
+         <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
     <header role="banner">
-        <h1>logout.jsp</h1>
     </header>
     <body>
         <h3>See you soon !!! Click <a href="/Instagrim">here</a> to return on main page </h3>         

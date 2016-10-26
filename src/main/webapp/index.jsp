@@ -16,22 +16,13 @@
 <html>
     <head>
         <title>Instagrim</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
     </head>
     <body>
         <header>
-            <h1>index.jsp </h1>
-           
-        </header>
-        <nav>
-            <ul>
-                   
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-              <%--    <li class="footer"><a href="/Instagrim/AllPics">All pictures</a></li>
-               
-             <li><a href="/Instagrim/Upload">Upload a picture</a></li>  --%>
+          
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -39,27 +30,38 @@
                             String UserName = lg.getUsername();
                             if (lg.getlogedin()) {
                     %>
-
+                <nav>
+            <ul>
+               
+            <li><a href="/Instagrim/Images/majed">Samples</a></li>
+            <li><a href="/Instagrim/Logout">Logout</a></li>
+             <li><a href="/Instagrim/Profile">Profile</a></li>
+             <li class="footer"><a href="/Instagrim">Home</a></li>
                 
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images send to page /Instagrim/Images</a></li>
-                <li><a href="Logout">Logout</a></li>
+                <li><a href="Upload">Upload a picture</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+               
+              
+            </ul>
+        </nav>
                     <%}
                             
                             }else{
                                 %>
-                 <li><a href="Register">Register</a></li>  <!-- perehod na stranicu register.jsp -->
-                <li><a href="Login">Login</a></li>         <!-- perehod na stranicu login.jsp -->
+             <nav>
+            <ul>
+                                <li><a href="Register">Register</a></li>  
+                <li><a href="Login">Login</a></li>  
+                 
+                 
+                  <li class="footer"><a href="/Instagrim">Home</a></li>
+            </ul>
+             </nav>
+             
                 <%
                                         
                             
-                    }%>
-            </ul>
-        </nav>
-        <footer>
-            <%-- <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Igors B</li>
-            </ul> --%>
-        </footer>
-    </body>
+                    }%>  
+        </header>
+        </body>
 </html>

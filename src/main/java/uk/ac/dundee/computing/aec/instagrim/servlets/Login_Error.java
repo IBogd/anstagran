@@ -31,6 +31,7 @@ public class Login_Error extends HttpServlet {
     Cluster cluster=null;
 
 
+    @Override
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();

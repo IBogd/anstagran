@@ -4,42 +4,41 @@
     Author     : Administrator
 --%>
 
+<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
-        <h1>upload.jsp  </h1>
-        <h2>Your world in White place where you uploaded </h2>
         <nav>
             <ul>
-                <%-- <li class="nav"><a href="upload.jsp">Upload</a></li --%>
-                <li class="nav"><a href="Upload">Upload</a></li
-                <li class="nav"><a href="/Instagrim/Images/majed">Sample Images</a></li>
-                <li><a href="Logout">Logout</a></li>
+                
+                  <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>   
+            <li><a href="/Instagrim/Images/majed">Samples</a></li>
+            <li><a href="/Instagrim/Logout">Logout</a></li>
+             <li><a href="/Instagrim/Profile">Profile</a></li>
+             <li class="footer"><a href="/Instagrim">Home</a></li>
+                
+                <li><a href="Upload">Upload a picture</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
             </ul>
         </nav>
  
         <article>
             <h3>File Upload</h3>
-            <label for="status">yes or no</label>
-            <input id="status" name="status">
+           
             <form method="POST" enctype="multipart/form-data" action="Image">
                 File to upload: <input type="file" name="upfile"><br/>
 
-                <br/>
+             <br/>
                 <input type="submit" value="Press"> to upload the file!
             </form>
 
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
-        </footer>
+
     </body>
 </html>

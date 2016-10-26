@@ -13,42 +13,56 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Website name</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <title>Instagrim</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
 
     </head>
     <body>
-        <header>
-        <h1>welcome to login.jsp page </h1>
-        </header>
         
-        <nav>
+        <header>
+            <nav>
             <ul>
-                
-                <!--<li><a href="/Instagrim/Images/majed">Sample Images,пока не понятно что делать с этим</a></li> -->
-                 <article>
-           
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Images</a></li>
+                <li><a href="Logout">Logout</a></li>
+                    <%}
+                            
+                            }else{
+                                %>
+                 <li><a href="Register">Register</a></li>  
+                <li><a href="Login">Login</a></li>  
+                 
+                 
+                  <li class="footer"><a href="/Instagrim">Home</a></li>
+                <%
+                                        
+                            
+                    }%>
             </ul>
-        </nav>
-       
+        </nav>  
+        </header>
+
         <article>
             <h3>Login</h3>
             <form method="POST"  action="Login"> <!--method post otpravlaet login details to cassandra I quess -->
-                <ul>
-                    <li>User Name <input type="text" name="username"></li>
-                    <li>Password <input type="password" name="password"></li>
-                </ul>
+                  <label for="u">User Name</label>
+                <input type="text" name="username" id="u" required><br>
+               
+                <label for="p">Password</label>
+                <input type="Password" name="password" id="p" required=""><br>
                 <br/>
                 <input type="submit" value="Login"> <!--konec form i informacija should be uploaded to the server -->
             </form>
 
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Igors B</li>
-            </ul>
-        </footer>
+
     </body>
 </html>
 

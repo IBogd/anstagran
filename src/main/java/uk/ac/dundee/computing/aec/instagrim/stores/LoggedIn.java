@@ -25,6 +25,7 @@ public class LoggedIn {
     private String Address = null;
     private String AboutMe = null;
     private String Name = null;
+    private String Image = null;
     
     public void LogedIn(){
     }
@@ -76,5 +77,14 @@ public class LoggedIn {
     
     public String getName() {
         return Name;
+    }
+    
+    // profile image id
+    public void setImage(String name) {
+        Image = name;
+    }
+    
+    public String getImage() {
+        return Image;
     }
 }

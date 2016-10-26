@@ -13,10 +13,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
-    <h1>UserPics.jsp</h1>
         <link rel="stylesheet" type="text/css" href="/Instagrim/Styles.css" />
     </head>
     <body>
+        <ul>
+            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
+            <li><a href="/Instagrim/Images/majed">Samples</a></li>
+            <li><a href="/Instagrim/Logout">Logout</a></li>
+             <li><a href="/Instagrim/Profile">Profile</a></li>
+             <li class="footer"><a href="/Instagrim">Home</a></li>
+        </ul>
         <header>
             <%
                 LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -40,14 +46,6 @@
             %>
 
         </header>
-
-        <ul>
-            <li><a href="/Instagrim/upload.jsp">Upload</a></li>
-            <li><a href="/Instagrim/Images/majed">Samples</a></li>
-            <li><a href="/Instagrim/Logout">Logout</a></li>
-        </ul>
-
-
 
         <h1><%=name%> photos</h1>
         <%                    java.util.LinkedList<Pic> lsPics = (java.util.LinkedList<Pic>) request.getAttribute("Pics");// store list of all images
@@ -80,10 +78,7 @@
         <%}%>          
 
 
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-            </ul>
-        </footer>
+
+       
     </body>
 </html>

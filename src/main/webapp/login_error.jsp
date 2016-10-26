@@ -14,33 +14,48 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Instagrim</title>
-        <link rel="stylesheet" type="text/css" href="Styles.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
 
     </head>
-    <body>
-        <header>
-        <h1>login_error.jsp </h1>
-        </header>
-        
+    <body> 
+         <nav>
+            <ul>
+                    <%
+                        
+                        LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+                        if (lg != null) {
+                            String UserName = lg.getUsername();
+                            if (lg.getlogedin()) {
+                    %>
+
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Images</a></li>
+                <li><a href="Logout">Logout</a></li>
+                    <%}
+                            
+                            }else{
+                                %>
+                 <li><a href="Register">Register</a></li>  
+                <li><a href="Login">Login</a></li>  
+                 
+                 
+                  <li class="footer"><a href="/Instagrim">Home</a></li>
+                <%          
+                    }%>
+            </ul>
+        </nav>  
         <article>
             <h3>Login</h3>
-            <form method="POST"  action="Login"> <!--method post otpravlaet login details to cassandra I quess -->
+            <form method="POST"  action="Login"> 
                 <ul>
                     <li>User Name <input type="text" name="username"></li>
                     <li>Password <input type="password" name="password"></li>
                     <font color="red"><small>Error: Details entered incorrectly</small></font>
                 </ul>
                 <br/>
-                <input type="submit" value="Login"> <!--konec form i informacija should be uploaded to the server -->
+                <input type="submit" value="Login"> 
             </form>
 
         </article>
-        <footer>
-            <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
-                <li>&COPY; Igors B</li>
-            </ul>
-        </footer>
     </body>
 </html>
 

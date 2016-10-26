@@ -145,4 +145,21 @@ public class User {
         return false;
         }
         }
+    
+    public String returnProfileImage(String username){
+        String n = "Full image";
+        
+        Session session = cluster.connect("instagrim");
+        PreparedStatement ps = session.prepare("select * from userprofiles where login =?");
+        ResultSet rs = null;
+        BoundStatement boundStatement = new BoundStatement(ps);
+        rs = session.execute( // this is where the query is executed
+                boundStatement.bind( // here you are binding the 'boundStatement'
+                        username));
+        for(Row row : rs){
+            n = row.getString("picprofile");
+        }
+        
+        return n;
+    }
 }

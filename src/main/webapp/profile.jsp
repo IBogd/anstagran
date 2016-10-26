@@ -14,12 +14,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <link rel="stylesheet" type="text/css" href="/Instagrim/style.css" />
+
         <title>Instagrim</title>
-    <h1>profile.jsp</h1>
+        
     </head>
     <body>
-        <%
-            LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
+         <nav>
+            <ul>
+                <% LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");%>   
+            <li><a href="/Instagrim/Images/majed">Samples</a></li>
+            <li><a href="/Instagrim/Logout">Logout</a></li>
+             <li><a href="/Instagrim/Profile">Profile</a></li>
+             <li class="footer"><a href="/Instagrim">Home</a></li>
+                
+                <li><a href="Upload">Upload a picture</a></li>
+                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+               
+              
+            </ul>
+        </nav>
+            <h1>Profile</h1>
+        <%  
             String name = lg.getUsername();
             String Aboutme = lg.getAbout();
             String fullName = lg.getName();
@@ -28,39 +44,9 @@
             <h1>Hello there <%=name%> :)</h1>
             <h2>Full Name: <%=fullName%> </h2>
             <h3>About Me: <%=Aboutme%> </h3>
-            
-        </profile_header>
-        <h3>Profile</h3>
-        <%--here i need to add links for my details with <p> tags as next paragraph 
-        <p> First:$(username) </p>
-        <p> Last name:$(last name)</p>
-            , email, aboutuser </p> --%>
-        
- 
-        
-        
-        <nav>
-            <ul>
-                <%
-                    if (lg != null) {
-                        if (lg.getlogedin()) {
-                %>
-                
-               <%-- <form method="POST"  action="Register"> --%>
-    
-                  <%--  <input type="submit" value="Register"> 
-                </form>  --%>
-                
-                <li><a href="Upload">Upload a picture</a></li>
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
-                <li><a href="Logout">Logout</a></li>
-                
 
-                <%
-                %>
-                <%}
-                }%>
-            </ul>
-        </nav>
+        </profile_header>
+        
+       
     </body>
 </html>
