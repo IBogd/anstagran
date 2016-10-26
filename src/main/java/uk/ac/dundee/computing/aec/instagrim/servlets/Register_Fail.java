@@ -54,6 +54,7 @@ public class Register_Fail extends HttpServlet {
         String first_name=request.getParameter("first_name");
         String last_name=request.getParameter("last_name");
         String email=request.getParameter("email");
+        String about=request.getParameter("about");
         
         User us=new User();
         us.setCluster(cluster);
@@ -64,8 +65,13 @@ public class Register_Fail extends HttpServlet {
                 rd.forward(request,response);
             }
         }
-        if (!"".equals(username) && !"".equals(password) && !us.userExists(username)){
-        us.RegisterUser(username, password,first_name,last_name,email);
+        if (!"".equals(username) && 
+                !"".equals(password) && 
+                !"".equals(first_name) && 
+                !"".equals(last_name) && 
+                !"".equals(email) && 
+                !us.userExists(username)){
+        us.RegisterUser(username, password,first_name,last_name,email, about);
         HttpSession session=request.getSession();
         LoggedIn lg= new LoggedIn();
             lg.setLogedin();

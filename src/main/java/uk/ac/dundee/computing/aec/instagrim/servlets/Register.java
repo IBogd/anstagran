@@ -50,13 +50,13 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username=request.getParameter("username");
+        String username=request.getParameter("username").toLowerCase();
         username = username.toLowerCase();
         String password=request.getParameter("password");
         String first_name=request.getParameter("first_name");
         String last_name=request.getParameter("last_name");
         String email=request.getParameter("email");
-        
+        String about=request.getParameter("about");
         
         User us=new User();
         us.setCluster(cluster);
@@ -67,15 +67,24 @@ public class Register extends HttpServlet {
                 rd.forward(request,response);
             }
         }
-        if (!"".equals(username) && !"".equals(password) && !us.userExists(username)){
-            us.RegisterUser(username, password,first_name,last_name,email);
-            HttpSession session=request.getSession();
+        //------------------SET USER VARIABLES-----------------\\
+        if (!"".equals(username) && 
+                !"".equals(password) && 
+                !"".equals(first_name) && 
+                !"".equals(last_name) && 
+                !"".equals(email) && 
+                !"".equals(about) && 
+                !us.userExists(username)){
+            us.RegisterUser(username, password,first_name,last_name,email,about);
+            HttpSession session=request.getSession();///use this 
             
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
+            lg.setAbout(about);
+            lg.setName(first_name + " " + last_name);
             session.setAttribute("LoggedIn", lg);
- 
+        //------------------SET USER VARIABLES-----------------\\
             response.sendRedirect("/Instagrim/Profile");
             }
 

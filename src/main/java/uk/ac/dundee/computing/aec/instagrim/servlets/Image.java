@@ -153,6 +153,7 @@ public class Image extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         for (Part part : request.getParts()) {
             System.out.println("Part Name " + part.getName());
+            //boolean if statement if part .getName == upfile profile
             String imgabout = request.getParameter("imgabout");
             String type = part.getContentType();
             String filename = part.getSubmittedFileName();
@@ -172,7 +173,7 @@ public class Image extends HttpServlet {
                 System.out.println("Length : " + b.length);
                 PicModel tm = new PicModel();
                 tm.setCluster(cluster);
-                tm.insertPic(b, type, filename, username, imgabout);
+                tm.insertPic(b, type, filename, username, imgabout);// add this arguments of the bolean 
 
                 is.close();
             }

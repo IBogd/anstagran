@@ -21,12 +21,29 @@
         <%
             LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
             String name = lg.getUsername();
-
+            String Aboutme = lg.getAbout();
+            String fullName = lg.getName();
         %>
         <profile_header>
             <h1>Hello there <%=name%> :)</h1>
+            <h2>Full Name: <%=fullName%> </h2>
+            <h3>About Me: <%=Aboutme%> </h3>
+            
         </profile_header>
+        <h3>Profile</h3>
+        <%--here i need to add links for my details with <p> tags as next paragraph 
+        <p> First:$(username) </p>
+        <p> Last name:$(last name)</p>
+            , email, aboutuser </p> --%>
+        
+        <form method="POST" enctype="multipart/form-data" action="Image">
+                File to upload: <input type="file" name="profile_pic"><br/>
 
+                <br/>
+                <input type="submit" value="Press"> to upload the file!
+            </form>   
+        
+        
         <nav>
             <ul>
                 <%

@@ -23,16 +23,21 @@ public class LoggedIn {
     
     // new
     private String Address = null;
+    private String AboutMe = null;
+    private String Name = null;
     
     public void LogedIn(){
     }
     
+    // user name
     public void setUsername(String name){
         this.Username=name;
     }
     public String getUsername(){
         return Username;
     }
+    
+    // logged in out
     public void setLogedin(){
         logedin=true;
     }
@@ -46,12 +51,30 @@ public class LoggedIn {
     public boolean getlogedin(){
         return logedin;
     }
-    // New
+    // address
     public void setAddress(String address){
         Address = address;
     }
     
     public String getAddress(){
         return Address;
+    }
+    
+    // about
+    public void setAbout(String about) {
+        AboutMe = about;
+    }
+    
+    public String getAbout() {
+        return AboutMe;
+    }
+    
+    // full name
+    public void setName(String name) {
+        Name = name;
+    }
+    
+    public String getName() {
+        return Name;
     }
 }

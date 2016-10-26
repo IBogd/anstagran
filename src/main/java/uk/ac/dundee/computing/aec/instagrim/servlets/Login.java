@@ -83,10 +83,17 @@ public class Login extends HttpServlet {
         HttpSession session=request.getSession();
         System.out.println("Session in servlet "+session);
         if (isValid){
+            
+            //------------------SET USER VARIABLES-----------------\\
+            // when the user logs in, we make a new loggedIn object, setting the 
+            // various variables, and then pass them to profile
             LoggedIn lg= new LoggedIn();
             lg.setLogedin();
             lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
+            lg.setAbout(us.returnAboutMe(username));
+            lg.setName(us.returnFullName(username));
+            request.setAttribute("LoggedIn", lg);
+            //------------------SET USER VARIABLES-----------------\\
             
             session.setAttribute("LoggedIn", lg);
             System.out.println("Session in servlet "+session);

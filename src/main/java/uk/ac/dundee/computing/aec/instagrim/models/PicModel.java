@@ -50,7 +50,7 @@ public class PicModel {
         this.cluster = cluster;
     }
 
-    public void insertPic(byte[] b, String type, String name, String user, String imgabout) {
+    public void insertPic(byte[] b, String type, String name, String user, String imgabout) { // add bolean there
         try {
             Convertors convertor = new Convertors();
 
@@ -71,15 +71,19 @@ public class PicModel {
             ByteBuffer processedbuf=ByteBuffer.wrap(processedb);
             int processedlength=processedb.length;
             Session session = cluster.connect("instagrim");
-
+           
             PreparedStatement psInsertPic = session.prepare("insert into pics ( picid, image,thumb,processed, user, interaction_time,imagelength,thumblength,processedlength,type,name) values(?,?,?,?,?,?,?,?,?,?,?)");
+        // if profile picture is true, else if not profile pic 
+               //Prepared statement for userprofile  only for profile pictures 
+            // userpiclist only if its not profile
             PreparedStatement psInsertPicToUser = session.prepare("insert into userpiclist ( picid, user,name, pic_added) values(?,?,?,?)"); //added new value name
             BoundStatement bsInsertPic = new BoundStatement(psInsertPic);
-            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
-
-            Date DateAdded = new Date();
+             Date DateAdded = new Date();
             session.execute(bsInsertPic.bind(picid, buffer, thumbbuf,processedbuf, user, DateAdded, length,thumblength,processedlength, type, name));
-            session.execute(bsInsertPicToUser.bind(picid, user, DateAdded, imgabout));// sjuda dobavlajutsa COLUMS iz Keyspaces chto vi6e
+           
+            BoundStatement bsInsertPicToUser = new BoundStatement(psInsertPicToUser);
+            session.execute(bsInsertPicToUser.bind(picid, user, imgabout, DateAdded));// sjuda dobavlajutsa COLUMS iz Keyspaces chto vi6e
+             
             session.close();
 
         } catch (IOException ex) {

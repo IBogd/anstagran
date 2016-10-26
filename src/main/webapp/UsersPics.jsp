@@ -70,7 +70,7 @@
         
             <li>
                 <a class="rig-cell" href="/Instagrim/Image/<%=p.getSUUID()%>" >
-                    <img class= "rig-img" src="/Instagrim/Thumb/<%=p.getSUUID()%>" alt = "">
+                    <img class= "rig-img" src="/Instagrim/Thumb/<%=p.getSUUID()%>" alt = ""> <%--need to use this ID src for display photo --%>
                 </a>
 
             </li>
